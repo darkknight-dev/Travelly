@@ -1,0 +1,391 @@
+/* Global styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 2rem 6rem;
+  background: #4c6e97;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out;
+  /* It is the property that I want to animate so what I am changing from button normal state 
+  to hover state, here only thing I am changing here is background */
+}
+
+button:focus{
+  babackground: #14202e;
+  outline: solid;
+  /* This is for accessbility*/
+}
+
+button:hover {
+  background: #2b3f58;
+
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  /* Sans serif is fail safe font */
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 4.8rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4,
+h5 {
+  font-size: 2.8rem;
+}
+
+p{
+  font-size: 2rem;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+
+/* Nav Selection with Hero */
+
+.main-header {
+  background: #131c27;
+  color: #fff;
+  position: sticky;
+  top: 0px;
+  z-index: 4;
+}
+
+/* Navigation Bar nav is parent, #logo & nav ul are children */
+nav {
+  /* If we don't have this min-height, when we resize this it will take the element content size, no issues */
+  min-height: 10vh;
+  /* Generally what you can do is you can just let the content take up the height of the navigation,
+  However there might be certain situations where you want to make sure that your whole pages takes up
+  100 percetage of the screen. So I want to make sure that everything here takes up the exactly same size on
+  my screen, it depends on the situation its fine both ways. In our situation, we are going to add height
+  because I want this to be perfectly matched up 100 percent of our size up the screen */
+
+  padding: 2rem;
+  display: flex;
+  /* Now the nav child items will be next to each other  */
+
+  /* Since we have ul inside nav, we might need to add flex for ul container as well */
+
+  width: 90%;
+  /* Need to add margin to the left and right of the container throughout the website, so use 90% width and 
+  use margin: auto to make it center */
+  margin: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Since we have flex basis as 40rem, its going to be very easy if we mention flex wrap in the
+  parent container to make it mobile friend, without wrap all the contents will be collpased if we resize to mobile
+  screen*/
+}
+
+#logo {
+  /* Initially the child items Travelly & ul list(location, benefits & contact) are one after another 
+  Below stands for flex grow: 1, flex shrink: 1 & flexbasis: 40rem, after we apply this property to both 
+  the logo and nav ul, both the child items will have equal width(spaces)  */
+  flex: 1 1 40rem;
+  font-family: "Pattaya", sans-serif;
+  font-weight: 400;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  flex: 1 1 40rem;
+  /* If I want more space for nav ul we can give flex grow as 2 it will have space double as other child logo element  */
+
+  justify-content: space-around;
+  align-items: center;
+  /* If we don't have the above flex property, the size of the nav ul is going to be very small */
+  flex-wrap: wrap;
+}
+
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+    url("img/landing-page.jpg");
+  /* If we give just background image, the image will appear as background only behind the area where content
+  resides, so you can't see the 100% of the image */
+  min-height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.hero h3 {
+  padding: 5rem;
+  font-weight: 300;
+}
+
+/* locations section */
+
+#locations {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+    url("img/new-york-page.png");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+
+  /* Instead of using justify content and center the text, we use width: 90% to have extra space as I told
+  earlier at the left and right of the webpage, see the locations header width 90% */
+  /* text-align: center; */
+  position: relative;
+
+  overflow: hidden;
+  /* To hide the overflowing cloud */
+}
+
+.locations-header {
+  width: 90%;
+  margin: auto;
+}
+
+.locations-header h2 {
+  padding: 1rem 0rem;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5rem;
+}
+
+.locations-header h3 {
+  padding: 4rem 0rem;
+  background: linear-gradient(#131c27, #663b34);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cloud {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}
+
+.moving-cloud-1 {
+  animation: cloudAnimation 2s infinite alternate ease-in;
+  z-index: -1;
+}
+
+.moving-cloud-2 {
+  top: 20%;
+  /* I need it to move down a little bit */
+  z-index: -2;
+  /* -1 Makes the second cloud moves right behind the first images */
+  opacity: 0.5;
+  animation: cloudAnimation 3.5s infinite alternate ease-in;
+}
+
+@keyframes cloudAnimation {
+  from {
+    transform: translate(10%, -10%);
+  }
+
+  to {
+    transform: translate(0%, 0%);
+  }
+}
+
+/* Benefits Section */
+
+.benefits-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #343c44;
+  color: #fff;
+  min-height: 30vh;
+}
+
+.benefits-header h3 {
+  padding: 1rem;
+}
+.benefits-header p {
+  font-weight: 400;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  /* Without align items center , flex box default style is going to be stretch when it comes
+  to line items, it will take up the whole 70vh */
+  min-height: 70vh;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 25rem;
+  box-shadow: 0px 10px 10px rgb(0, 0, 0,.1), 0px 20px 20px rgb(0, 0, 0,.1);
+  min-height: 40vh;
+  margin: 2rem 5rem;
+}
+
+.card h4,
+.card p{
+  padding: 1rem;  
+}
+
+.card img {
+  max-width: 15%;
+  margin: rem;
+}
+
+.card-icon{
+  background: #27394e;
+}
+
+/* Contact Section */
+
+#contact{
+  min-height: 100vh;
+  background:  linear-gradient(rgba(0, 0, 0, 0.5), transparent),url('img/contact-mountain.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Now we can get that form wrapper and apply some styles to that form the wrapper and we can have 
+a background */
+
+.form-wrapper{
+  background: rgba(19, 28, 39, 0.9);
+  width: 60%;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.form-header{
+  text-align: center;
+  padding: 4rem;
+}
+
+.name-form,
+.email-form{
+padding: 2rem;
+text-align: center;
+}
+
+.form-wrapper label{
+  font-size: 2.6rem;
+  margin: 0rem 3rem;
+  /* To separate label name from input text box */
+
+}
+
+.form-wrapper button{
+  width: 100%;
+  padding: 2rem;
+  margin-top: 8rem; 
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.form-wrapper input{
+  padding: 1rem 3rem;
+}
+
+
+/* Footer section */
+
+footer{
+  color: #fff;
+  background: rgba(19, 28, 39, 0.9);
+
+}
+
+.footer-wrapper{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 90%;
+  margin: auto;
+  min-height: 10vh;
+}
+
+footer h5{
+  flex: 1 1 40rem;
+}
+footer ul{
+  display: flex;
+  list-style: none;
+  flex: 1 1 40rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* Media Query */
+
+@media screen and (max-width: 932px) {
+  html {
+    font-size: 45%;
+  }
+  nav {
+    text-align: center;
+  }
+
+  #logo {
+    padding: 2rem;
+  }
+
+  .cloud {
+    height: 40rem;
+    pointer-events: none;
+  }
+
+  .locations-header h3 {
+    background:  rgba(19, 28, 39, 1);
+    -webkit-text-fill-color: #fff;
+  }
+
+  .form-wrapper{
+    width: 100%;
+  }
+
+  .footer{
+    text-align: center;
+  }
+
+  footer h5{
+    padding-bottom: 3rem;
+  }
+}
